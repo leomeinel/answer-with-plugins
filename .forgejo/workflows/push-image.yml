@@ -1,4 +1,4 @@
-name: Build and push container image to local registry
+name: Build and push image
 
 on:
   push:
@@ -13,17 +13,17 @@ jobs:
       image: "code.forgejo.org/oci/node:22-trixie"
 
     steps:
-      - name: Install docker-cli
+      - name: Install dependencies
         run: |
           apt-get -qq update
           apt-get -qq install -q docker-cli
 
-      - name: Sanitize the name of the repository
+      - name: Sanitize repository name
         id: repository
         run: |
           echo "value=${FORGEJO_SERVER_URL/https:\/\//}" >> "$FORGEJO_OUTPUT"
 
-      - name: Set up Docker Buildx
+      - name: Set up docker buildx
         uses: docker/setup-buildx-action@v3
 
       - name: Login to local registry
