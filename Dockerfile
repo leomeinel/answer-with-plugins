@@ -25,7 +25,7 @@ RUN apk --no-cache add \
 
 # Build /usr/bin/new_answer
 COPY scripts/ /scripts
-RUN chmod +x /scripts/*.sh
+RUN chmod 755 /scripts/*.sh
 RUN ["/bin/bash","-c","/scripts/build.sh"]
 
 # Defaults from https://github.com/apache/answer/blob/main/Dockerfile
