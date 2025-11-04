@@ -37,10 +37,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.FORGEJO_REPOSITORY }}
-          flavor: |
-            latest=auto
-            prefix=${{ steps.repository.outputs.value }}/,onlatest=true
+          images: ${{ steps.repository.outputs.value }}/${{ env.FORGEJO_REPOSITORY }}
           tags: |
             # See: https://github.com/docker/metadata-action?tab=readme-ov-file#semver
             type=ref,event=branch
