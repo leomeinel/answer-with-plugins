@@ -5,9 +5,6 @@ on:
     tags:
       - "v*.*.*"
 
-env:
-  IMAGE_NAME: server-packages/answer-with-plugins
-
 jobs:
   build-push:
     runs-on: docker
@@ -40,7 +37,10 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.IMAGE_NAME }}
+          images: ${{ env.FORGEJO_REPOSITORY }}
+          flavor: |
+            latest=auto
+            prefix=${{ steps.repository.outputs.value }},onlatest=true
           tags: |
             # See: https://github.com/docker/metadata-action?tab=readme-ov-file#semver
             type=ref,event=branch
