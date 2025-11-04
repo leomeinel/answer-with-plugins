@@ -40,7 +40,7 @@ jobs:
           images: ${{ env.FORGEJO_REPOSITORY }}
           flavor: |
             latest=auto
-            prefix=${{ steps.repository.outputs.value }},onlatest=true
+            prefix=${{ steps.repository.outputs.value }}/,onlatest=true
           tags: |
             # See: https://github.com/docker/metadata-action?tab=readme-ov-file#semver
             type=ref,event=branch
