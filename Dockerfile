@@ -10,8 +10,7 @@
 
 # Initialize /usr/bin/answer
 # INFO: Replace VERSION
-# FIXME: This should use 1.7.0 after release
-FROM docker.io/apache/answer:1.6.0 AS answer-builder
+FROM docker.io/apache/answer:1.7.0 AS answer-builder
 # INFO: Replace VERSION
 FROM code.forgejo.org/oci/golang:1.25-alpine3.22 AS golang-builder
 COPY --from=answer-builder /usr/bin/answer /usr/bin/answer
