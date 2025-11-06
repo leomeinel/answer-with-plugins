@@ -9,15 +9,18 @@
 ###
 
 # Initialize /usr/bin/answer
-# INFO: Replace VERSION
+# INFO: Replace version
 FROM docker.io/apache/answer:1.7.0 AS answer-builder
-# INFO: Replace VERSION
+# INFO: Replace version
 FROM code.forgejo.org/oci/golang:1.25-alpine3.22 AS golang-builder
 COPY --from=answer-builder /usr/bin/answer /usr/bin/answer
 
+# Set build time variables
+# INFO: Replace version
+ARG PNPM_VERSION=10.20.0
+ARG ANSWER_MODULE=github.com/apache/answer@v1.7.0
+
 # Install dependencies
-# INFO: Replace VERSION
-ENV PNPM_VERSION="10.20.0"
 RUN apk --no-cache add \
     build-base git bash nodejs npm go && \
     npm install -g pnpm@${PNPM_VERSION}
@@ -28,7 +31,7 @@ RUN chmod 755 /scripts/*.sh
 RUN ["/bin/bash","-c","/scripts/build.sh"]
 
 # Defaults from https://github.com/apache/answer/blob/main/Dockerfile
-# INFO: Replace VERSION
+# INFO: Replace version
 FROM code.forgejo.org/oci/alpine:latest
 LABEL maintainer="linkinstar@apache.org"
 
