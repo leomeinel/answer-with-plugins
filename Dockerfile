@@ -2,22 +2,22 @@
 # File: Dockerfile
 # Author: Leopold Johannes Meinel (leo@meinel.dev)
 # -----
-# Copyright (c) 2025 Leopold Johannes Meinel & contributors
+# Copyright (c) 2026 Leopold Johannes Meinel & contributors
 # SPDX ID: Apache-2.0
 # URL: https://www.apache.org/licenses/LICENSE-2.0
 ###
 
 # Initialize /usr/bin/answer
 # INFO: Replace version
-FROM docker.io/apache/answer:1.7.0 AS answer-builder
+FROM docker.io/apache/answer:2.0.0 AS answer-builder
 # INFO: Replace version
-FROM code.forgejo.org/oci/golang:1.25-alpine3.22 AS golang-builder
+FROM code.forgejo.org/oci/golang:1.26-alpine3.23 AS golang-builder
 COPY --from=answer-builder /usr/bin/answer /usr/bin/answer
 
 # Set build time variables
 # INFO: Replace version
-ARG PNPM_VERSION=10.20.0
-ARG ANSWER_MODULE=github.com/apache/answer@v1.7.0
+ARG PNPM_VERSION=10.32.1
+ARG ANSWER_MODULE=github.com/apache/answer@2.0.0
 
 # Install dependencies
 RUN apk --no-cache add \

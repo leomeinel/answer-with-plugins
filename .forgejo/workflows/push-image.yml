@@ -10,7 +10,7 @@ jobs:
     runs-on: docker
 
     container:
-      image: "code.forgejo.org/oci/node:22-trixie"
+      image: "code.forgejo.org/oci/node:24-trixie"
 
     steps:
       - name: Install dependencies
