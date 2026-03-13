@@ -9,7 +9,7 @@
 
 # Initialize /usr/bin/answer
 # INFO: Replace version
-FROM docker.io/apache/answer:2.0.0 AS answer-builder
+FROM docker.io/apache/answer:1.7.1 AS answer-builder
 # INFO: Replace version
 FROM code.forgejo.org/oci/golang:1.26-alpine3.23 AS golang-builder
 COPY --from=answer-builder /usr/bin/answer /usr/bin/answer
@@ -17,7 +17,8 @@ COPY --from=answer-builder /usr/bin/answer /usr/bin/answer
 # Set build time variables
 # INFO: Replace version
 ARG PNPM_VERSION=10.32.1
-ARG ANSWER_MODULE=github.com/apache/answer@v2.0.0
+# FIXME: See https://github.com/apache/answer/issues/1514
+ARG ANSWER_MODULE=github.com/apache/answer@v1.7.1
 
 # Install dependencies
 RUN apk --no-cache add \
