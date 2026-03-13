@@ -17,7 +17,7 @@ COPY --from=answer-builder /usr/bin/answer /usr/bin/answer
 # Set build time variables
 # INFO: Replace version
 ARG PNPM_VERSION=10.32.1
-ARG ANSWER_MODULE=github.com/apache/answer@2.0.0
+ARG ANSWER_MODULE=github.com/apache/answer@v2.0.0
 
 # Install dependencies
 RUN apk --no-cache add \
